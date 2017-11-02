@@ -1,0 +1,85 @@
+<div class="container" style="margin-top: 50px">
+  <fieldset>
+    <form (ngSubmit)="addProduct(productForm.value)" [formGroup]="productForm">
+
+      <div class="form-group" hidden>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="id"
+            ngModel="{{ product.id }}"
+          >
+      </div>
+
+      <div class="form-group">
+        <label> Product Name
+          <input
+            type="text"
+            class="form-control"
+            formControlName="name"
+            ngModel="{{ product.name }}"
+            autofocus
+          >
+        </label>
+        <div *ngIf="productForm.get('name').errors && productForm.get('name').touched">
+          <p class="text-danger">Invalid name</p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label> Description
+          <input
+            type="text"
+            class="form-control"
+            formControlName="description"
+            ngModel="{{ product.description }}"
+          >
+        </label>
+        <div *ngIf="productForm.get('description').errors && productForm.get('description').touched">
+          <p class="text-danger">Invalid description</p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label> Price
+          <input
+            type="text"
+            class="form-control"
+            formControlName="price"
+            ngModel="{{ product.price }}"
+          >
+        </label>
+        <div *ngIf="productForm.get('price').errors && productForm.get('price').touched">
+          <p class="text-danger">Invalid price</p>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" [disabled]="productForm.invalid">Submit</button>
+    </form>
+  </fieldset>
+</div>
+
+<div class="container" style="margin-top: 50px">
+  <div>
+    <table class="table table-striped">
+      <thead>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products" (click)="editProduct(product)">
+          <td> {{ product.name }} </td>
+          <td> {{ product.description }} </td>
+          <td> {{ product.price }} </td>
+          <td>
+            <button class="btn btn-warning" (click)="deleteProduct(product)">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

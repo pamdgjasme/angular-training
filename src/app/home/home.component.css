@@ -1,0 +1,14 @@
+/*styles for home content only*/
+.home-layout {
+  background-color: #f5f5f5;
+}
+
+.center-login {
+  margin-top: 180px;
+  margin-left: 450px;
+}
+
+.ng-touched.ng-invalid {
+  border-color: red;
+  border-width: thin;
+}

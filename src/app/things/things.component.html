@@ -1,0 +1,77 @@
+<div class="container" style="margin-top: 50px">
+  <div class="pull-left">
+    <label>Product Name</label>
+    <input type="text" [(ngModel)]="name"/>
+    <button class="btn btn-primary" (click)="addThing()">Add</button>
+  </div>
+  <div class="pull-right">
+    <input type="text" [(ngModel)]="keyword" placeholder="Search keyword.."/>
+    <button class="btn btn-primary" (click)="searchThing(keyword)">Search</button>
+    <button class="btn btn-info" (click)="loadItems()">Reset</button>
+  </div>
+  <div>
+    <table class="table table-striped">
+      <thead>
+        <th>Name</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let t of things | slice:pagination.startIndex:pagination.endIndex + 1; let i = index">
+          <td>
+            <div *ngIf="editModeIndices.includes(t.id); else viewMode">
+              <input type="text" value="{{ t.name }}" [(ngModel)]="t.name"/>
+            </div>
+            <ng-template #viewMode>
+              <div> {{ t.name }} </div>
+            </ng-template>
+          </td>
+            <td>
+              <div class="crud-buttons" *ngIf="!editMode && !editModeIndices.includes(t.id); else editButtons">
+                <button class="btn btn-warning" [attr.id]="t.id" (click)="onDelete(t)">
+                  Delete
+                </button>
+                <button class="btn btn-warning" [attr.id]="t.id" (click)="toggleEditMode(t.id)">
+                  Edit
+                </button>
+              </div>
+              <ng-template #editButtons>
+                <div class="crud-buttons">
+                  <div *ngIf="editModeIndices.includes(t.id); else nonEditButtons">
+                    <button class="btn btn-warning" (click)="onSave(t, i)">
+                      Save
+                    </button>
+                    <button class="btn btn-warning" (click)="toggleEditMode(t.id)">
+                      Cancel
+                    </button>
+                  </div>
+                  <ng-template #nonEditButtons>
+                    <button class="btn btn-warning" [attr.id]="t.id" (click)="onDelete(t)">
+                      Delete
+                    </button>
+                    <button class="btn btn-warning" [attr.id]="t.id" (click)="toggleEditMode(t.id)">
+                      Edit
+                    </button>
+                  </ng-template>
+                </div>
+              </ng-template>
+            </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  <div *ngIf="searchMode; else defaultItems">
+    <div *ngFor="let n of pagination.totalPages" style="display: inline; white-space: nowrap;">
+      <button class="btn btn-info" (click)="searchPagination(n)">{{ n }}</button>
+    </div>
+  </div>
+
+  <ng-template #defaultItems>
+    <!-- <button class="btn btn-info" (click)="loadItems(pagination.start)">First</button> -->
+    <div *ngFor="let n of pagination.totalPages" style="display: inline; white-space: nowrap;">
+      <button class="btn btn-info" (click)="loadItems(n)">{{ n }}</button>
+    </div>
+    <!-- <button class="btn btn-info" (click)="loadItems(pagination.end)">Last</button> -->
+  </ng-template>
+</div>

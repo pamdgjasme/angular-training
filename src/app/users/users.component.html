@@ -1,0 +1,14 @@
+<div class="container" style="margin-top: 50px">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <th>User</th>
+      <th>Email</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let value of users">
+        <td> {{ value.firstname }} </td>
+        <td> {{ value.email }} </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
