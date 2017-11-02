@@ -4,7 +4,7 @@ export class SearchService {
   searchByKeyword(obj, keyword) {
     this.data = obj;
     let tmp_arr = [];
-    var a = 'a new apple';
+
     for (let i in this.data) {
       var name = this.data[i].name.toLowerCase();
       if (name.includes(keyword.toLowerCase())) {

@@ -61,11 +61,13 @@
 </div>
 
 <div class="container">
+  <!-- <button class="btn btn-info" (click)="loadItems(pagination.start)">First</button> -->
   <div *ngIf="searchMode; else defaultItems">
     <div *ngFor="let n of pagination.totalPages" style="display: inline; white-space: nowrap;">
       <button class="btn btn-info" (click)="searchPagination(n)">{{ n }}</button>
     </div>
   </div>
+  <!-- <button class="btn btn-info" (click)="loadItems(pagination.end)">Last</button> -->
 
   <ng-template #defaultItems>
     <!-- <button class="btn btn-info" (click)="loadItems(pagination.start)">First</button> -->

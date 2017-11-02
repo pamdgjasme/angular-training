@@ -24,7 +24,6 @@ export class ThingsComponent implements OnInit {
   searchMode: boolean;
   name: string;
   keyword: string;
-
   header: any;
   user_id: any;
 

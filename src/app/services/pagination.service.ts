@@ -2,6 +2,7 @@ export class PaginationService {
 
   start = 1;
   end = 0;
+
   itemsPerPage = 10;
   startIndex;
   endIndex;
